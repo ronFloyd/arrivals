@@ -1,8 +1,12 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.templateHeader {
+	font-size: 2em;
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	color: gray;
 }
-
-a {
-  color: #00B7FF;
+.templateDescription {
+	font-size: 1em;
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	color: black;
 }
