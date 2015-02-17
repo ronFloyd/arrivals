@@ -1,0 +1,12 @@
+.templateHeader {
+	font-size: 2em;
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	color: gray;
+}
+.templateDescription {
+	font-size: 1em;
+	font-family: Helvetica, sans-serif;
+	font-weight: bold;
+	color: black;
+}
