@@ -1,2 +1,2 @@
-# arrivals
-Transit arrivals sample API.
+# Arrivals
+
