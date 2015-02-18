@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>Transit Arrivals</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="stylesheets/ronfloyd.css">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Transit Arrivals</h1>
+        <p>This site makes use of the Trimet Developer API to display arrival times for the MAX Blue Line Train at the Cleveland Avenue Stop.</p>
+      </div>
+
+      <div class="col-md-8 hidden-sm hidden-xs">
+        <img src="images/newMax.jpg" width="600px" height="450px">
+      </div>
+      <div class="col-md-4 hidden-md hidden-lg text-center">
+        <img src="images/BeDazzler.jpg" width="200px" height="200px">
+      </div>
+
+      <div class="col-md-4 well text-center">
+        <form>
+            <i class="glyphicon glyphicon-globe"></i>
+            <h3>Enter Stop ID</h3>
+            <input type="text" name="stopID" placeholder="Stop ID..." />
+            <input type="submit" class="btn btn-sm btn-info" value="Get Arrivals" />
+        </form>
+        <section id="stopID"></section>
+        <section id="stopName"></section><br />
+        <section><h4 id="fullSign1"></h4></section>
+        <section id="scheduled1"></section><br />
+        <section><h4 id="fullSign2"></h4></section>
+        <section id="scheduled2"></section>
+      </div>
+
+      <footer class="footer col-md-12 text-center">
+        <p>&copy; Ron Floyd 2015</p>
+      </footer>
+
+    </div> <!--Container-->
+
+    <script>
+      var theUrl = "http://developer.trimet.org/ws/V1/arrivals/appID/26905EAEEBA02217C9448D594?json=true&locIDs=8359";
+
+      $.getJSON(theUrl, function(json) {
+          console.log(json.resultSet);
+
+      var d1 = new Date(json.resultSet.arrival[0].scheduled),
+          d2 = new Date(json.resultSet.arrival[1].scheduled),
+          time1 = d1.toLocaleTimeString();
+          time2 = d2.toLocaleTimeString();
+
+      $('#stopID').text('Stop ID: ' + json.resultSet.location[0].locid);
+      $('#stopName').text(json.resultSet.location[0].desc);
+      $('#fullSign1').text(json.resultSet.arrival[0].fullSign);
+      $('#scheduled1').text("Scheduled at: " + time1);
+      $('#fullSign2').text(json.resultSet.arrival[1].fullSign);
+      $('#scheduled2').text("Scheduled at: " + time2)
+      });
+    </script>
+  </body>
+</html>
